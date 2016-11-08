@@ -1,0 +1,25 @@
+.tr:hover td {
+  background: #e9f5dc;
+}
+
+td {
+  padding: 8px 10px;
+  background: #f7f7f7;
+  border: 1px solid #dddddd;
+}
+
+.open {
+  width: 15px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.remove {
+  width: 15px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.nested {
+  padding: 20px 10px;
+}
