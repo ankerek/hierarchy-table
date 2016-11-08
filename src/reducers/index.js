@@ -10,14 +10,6 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   const { payload } = action;
   switch(action.type) {
-    case actions.FETCH_DATA:
-      const { entities: { patients, relatives, phones }, result } = payload;
-      return {
-        patientsIds: result,
-        patients,
-        relatives,
-        phones,
-      };
 
     case actions.REMOVE_ITEM:
       const { type, parentId, index } = payload;
