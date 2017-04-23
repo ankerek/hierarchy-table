@@ -18,7 +18,7 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: 'babel',
+        loader: 'babel-loader',
         query: {
           babelrc: false,
           presets: [
@@ -30,7 +30,7 @@ module.exports = {
       },
       {
         test: /\.json$/,
-        loader: 'json',
+        loader: 'json-loader',
       },
       {
         test: /\.css$/,
@@ -48,7 +48,7 @@ module.exports = {
         // So, no need for ExtractTextPlugin here.
         test: /\.css$/,
         include: /node_modules/,
-        loader: 'style!css',
+        loader: 'style-loader!css-loader',
       },
     ],
   },
@@ -67,8 +67,6 @@ module.exports = {
       async: true,
     }),
     new webpack.optimize.OccurrenceOrderPlugin(true),
-    // Merge all duplicate modules
-    new webpack.optimize.DedupePlugin(),
     new webpack.LoaderOptionsPlugin({
       minimize: true,
       debug: false,
