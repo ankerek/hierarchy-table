@@ -1,6 +1,7 @@
 import React, { PropTypes as T } from 'react';
 import { connect } from 'react-redux';
 import { getPatients } from '../../reducers';
+import { removeItem } from '../../actions';
 import { TableView } from '../Table';
 
 import './styles.css';
@@ -9,10 +10,16 @@ const mapStateToProps = (state) => ({
   items: getPatients(state),
 })
 
-const AppView = ({ items, dispatch }) => (
+const mapDispatchToProps = (dispatch) => ({
+  handleRemoveItem({ type, parentId, index: i }) {
+    dispatch(removeItem({ type, parentId, index: i }));
+  }
+});
+
+const AppView = ({ items, handleRemoveItem }) => (
   <div>
-    { items.length 
-      ? <TableView rows={items} dispatch={dispatch} />
+    { items.length
+      ? <TableView rows={items} handleRemoveItem={handleRemoveItem} />
       : 'No data'
     }
   </div>
@@ -20,11 +27,12 @@ const AppView = ({ items, dispatch }) => (
 
 AppView.propTypes = {
   items: T.array,
-  dispatch: T.func.isRequired,
+  handleRemoveItem: T.func.isRequired,
 }
 
 const App = connect(
-  mapStateToProps
+  mapStateToProps,
+  mapDispatchToProps,
 )(AppView)
 
 export default App;
